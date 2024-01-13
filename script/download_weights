@@ -23,7 +23,8 @@ from diffusers import DiffusionPipeline
 # download_large_file(large_file_url, output_filename)
 
 # model_id = "runwayml/stable-diffusion-v1-5"
-model_id = "stablediffusionapi/epicrealism5"
+# model_id = "stablediffusionapi/epicrealism5"
+model_id = "redstonehero/epicrealism_pureevolutionv5"
 MODEL_CACHE = "diffusers-cache"
 
 os.makedirs(MODEL_CACHE, exist_ok=True)
