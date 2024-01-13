@@ -7,5 +7,6 @@ build:
     - "ftfy"
     - "transformers"
     - "accelerate"
+    - "requests"
 
 predict: "predict.py:Predictor"
