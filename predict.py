@@ -2,7 +2,7 @@ from PIL import Image
 from cog import BasePredictor, Input, Path
 import torch
 from typing import List
-from diffusers import StableDiffusionImg2ImgPipeline
+from diffusers import DiffusionPipeline
 from torch.utils.data import Dataset
 import os
 import random
@@ -16,7 +16,7 @@ MODEL_CACHE = "diffusers-cache"
 class Predictor(BasePredictor):
     def setup(self):
         print("Loading pipeline...")
-        self.pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
+        self.pipe = DiffusionPipeline.from_pretrained(
             MODEL_ID,
             torch_dtype=torch.float16,
             cache_dir=MODEL_CACHE,
@@ -28,17 +28,17 @@ class Predictor(BasePredictor):
     @torch.inference_mode()
     def predict(
         self,
-        input_photo: Path = Input(description="Path to the input photo"),
+        # input_photo: Path = Input(description="Path to the input photo"),
         prompt: str = Input(description="Style prompt", default="Van Gogh style"),
     ) -> List[Path]:
         
-        input_photo_path = input_photo
+        # input_photo_path = input_photo
         
         print("testing")
-        init_img = Image.open(input_photo_path)
-        init_img = init_img.resize((512, 512))
+        # init_img = Image.open(input_photo_path)
+        # init_img = init_img.resize((512, 512))
 
-        output = self.pipe(prompt=prompt, image=init_img, strength=0.75, guidance_scale=7.5)
+        output = self.pipe(prompt=prompt, strength=0.75, guidance_scale=7.5)
         output_paths = []
         
         for i, sample in enumerate(output.images):
