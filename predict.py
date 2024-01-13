@@ -29,7 +29,7 @@ class Predictor(BasePredictor):
     def predict(
         self,
         # input_photo: Path = Input(description="Path to the input photo"),
-        prompt: str = Input(description="Style prompt", default="Van Gogh style"),
+        prompt: str = Input(description="Style prompt"),
     ) -> List[Path]:
         
         # input_photo_path = input_photo
