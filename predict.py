@@ -20,7 +20,7 @@ class Predictor(BasePredictor):
             MODEL_ID,
             torch_dtype=torch.float16,
             cache_dir=MODEL_CACHE,
-            local_files_only=True,
+            local_files_only=False,
         ).to("cuda")
         
         self.pipe.enable_attention_slicing()
