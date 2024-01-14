@@ -4,28 +4,27 @@ print("Running download_weights")
 import os
 # from diffusers import StableDiffusionImg2ImgPipeline
 from diffusers import DiffusionPipeline
-# import requests
+import requests
 
 
-# def download_large_file(url, filename):
-#     """Download a large file in chunks."""
-#     with requests.get(url, stream=True) as r:
-#         r.raise_for_status()
-#         with open(filename, 'wb') as f:
-#             for chunk in r.iter_content(chunk_size=8192): 
-#                 f.write(chunk)
+def download_large_file(url, filename):
+    """Download a large file in chunks."""
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        with open(filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192): 
+                f.write(chunk)
 
-# # URL of the large file you want to download
-# large_file_url = 'https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16'
-# output_filename = 'mymodel.safetensors'
+# URL of the large file you want to download
+output_filename = 'lora.safetensors'
+lora_path = "https://civitai.com/api/download/models/167778"
 
 # # Download the large file
-# download_large_file(large_file_url, output_filename)
+download_large_file(lora_path, output_filename)
 
 # model_id = "runwayml/stable-diffusion-v1-5"
 # model_id = "stablediffusionapi/epicrealism5"
 model_id = "redstonehero/epicrealism_pureevolutionv5"
-lora_path = "https://civitai.com/api/download/models/167778"
 MODEL_CACHE = "diffusers-cache"
 
 os.makedirs(MODEL_CACHE, exist_ok=True)
@@ -35,4 +34,4 @@ os.makedirs(MODEL_CACHE, exist_ok=True)
 # )
 
 pipe = DiffusionPipeline.from_pretrained(model_id, cache_dir=MODEL_CACHE)
-pipe.load_lora_weights(lora_path, use_safetensors=True)
+# pipe.load_lora_weights(lora_path, use_safetensors=True)
