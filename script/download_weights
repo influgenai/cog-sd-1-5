@@ -16,7 +16,7 @@ def download_large_file(url, filename):
                 f.write(chunk)
 
 # URL of the large file you want to download
-output_filename = 'lora.safetensors'
+output_filename = 'diffusers-cache/lora.safetensors'
 lora_path = "https://civitai.com/api/download/models/167778"
 
 # # Download the large file
