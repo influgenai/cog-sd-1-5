@@ -21,9 +21,11 @@ class Predictor(BasePredictor):
             torch_dtype=torch.float16,
             cache_dir=MODEL_CACHE,
             local_files_only=False,
-        ).to("cuda")
+        )
+        self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
+        self.pipe.to("cuda")
 
-        self.pipe.load_lora_weights("/diffusers-cache/lora.safetensors")
+        # self.pipe.load_lora_weights("/diffusers-cache/lora.safetensors")
         
         self.pipe.enable_attention_slicing()
 
