@@ -25,8 +25,14 @@ from diffusers import DiffusionPipeline
 # model_id = "runwayml/stable-diffusion-v1-5"
 # model_id = "stablediffusionapi/epicrealism5"
 model_id = "redstonehero/epicrealism_pureevolutionv5"
+lora_path = "https://civitai.com/api/download/models/167778"
 MODEL_CACHE = "diffusers-cache"
 
 os.makedirs(MODEL_CACHE, exist_ok=True)
 
+# better_vae = AutoencoderKL.from_pretrained(
+#     "madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16
+# )
+
 pipe = DiffusionPipeline.from_pretrained(model_id, cache_dir=MODEL_CACHE)
+pipe.load_lora_weights(lora_path)

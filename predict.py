@@ -22,6 +22,8 @@ class Predictor(BasePredictor):
             cache_dir=MODEL_CACHE,
             local_files_only=False,
         ).to("cuda")
+
+        self.pipe.load_lora_weights("")
         
         self.pipe.enable_attention_slicing()
 
