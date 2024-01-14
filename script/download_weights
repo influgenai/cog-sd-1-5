@@ -35,4 +35,4 @@ os.makedirs(MODEL_CACHE, exist_ok=True)
 # )
 
 pipe = DiffusionPipeline.from_pretrained(model_id, cache_dir=MODEL_CACHE)
-pipe.load_lora_weights(lora_path)
+pipe.load_lora_weights(lora_path, use_safetensors=True)
