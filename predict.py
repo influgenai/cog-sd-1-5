@@ -23,7 +23,7 @@ class Predictor(BasePredictor):
             local_files_only=False,
         ).to("cuda")
 
-        self.pipe.load_lora_weights("")
+        self.pipe.load_lora_weights("/diffusers-cache/lora.safetensors")
         
         self.pipe.enable_attention_slicing()
 
