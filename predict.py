@@ -24,7 +24,7 @@ class Predictor(BasePredictor):
         )
         self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
 
-        self.pipe.load_lora_weights("/diffusers-cache/lora.safetensors")
+        self.pipe.load_lora_weights("/home/cog-sd-1-5/diffusers-cache/lora.safetensors")
 
         self.pipe.to("cuda")
         
