@@ -16,6 +16,7 @@ MODEL_CACHE = "diffusers-cache"
 class Predictor(BasePredictor):
     def setup(self):
         print("Loading pipeline...")
+        print("WORKING DORECTORY", os.getcwd())
         self.pipe = DiffusionPipeline.from_pretrained(
             MODEL_ID,
             torch_dtype=torch.float16,
@@ -23,6 +24,7 @@ class Predictor(BasePredictor):
             local_files_only=False,
         )
         # self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
+
 
         self.pipe.load_lora_weights("/home/cog-sd-1-5/diffusers-cache/lora.safetensors")
 
