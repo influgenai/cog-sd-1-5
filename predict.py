@@ -23,6 +23,8 @@ class Predictor(BasePredictor):
         for item in files_and_directories:
             print(item)
 
+        print("list diffusers cache", os.listdir(os.path.join(os.getcwd(), 'diffusers-cache')))
+
         self.pipe = DiffusionPipeline.from_pretrained(
             MODEL_ID,
             torch_dtype=torch.float16,
@@ -31,8 +33,7 @@ class Predictor(BasePredictor):
         )
         # self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
 
-
-        self.pipe.load_lora_weights("/home/cog-sd-1-5/diffusers-cache/lora.safetensors")
+        self.pipe.load_lora_weights("/diffusers-cache/lora.safetensors")
 
         self.pipe.to("cuda")
         
