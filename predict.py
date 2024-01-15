@@ -23,9 +23,10 @@ class Predictor(BasePredictor):
             local_files_only=False,
         )
         self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
-        self.pipe.to("cuda")
 
-        # self.pipe.load_lora_weights("/diffusers-cache/lora.safetensors")
+        self.pipe.load_lora_weights("/diffusers-cache/lora.safetensors")
+
+        self.pipe.to("cuda")
         
         self.pipe.enable_attention_slicing()
 
