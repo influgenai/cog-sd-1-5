@@ -22,7 +22,7 @@ class Predictor(BasePredictor):
             cache_dir=MODEL_CACHE,
             local_files_only=False,
         )
-        self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
+        # self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
 
         self.pipe.load_lora_weights("/home/cog-sd-1-5/diffusers-cache/lora.safetensors")
 
