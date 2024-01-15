@@ -17,6 +17,12 @@ class Predictor(BasePredictor):
     def setup(self):
         print("Loading pipeline...")
         print("WORKING DORECTORY", os.getcwd())
+
+        files_and_directories = os.listdir(os.getcwd())
+        # Print each file and directory
+        for item in files_and_directories:
+            print(item)
+
         self.pipe = DiffusionPipeline.from_pretrained(
             MODEL_ID,
             torch_dtype=torch.float16,
