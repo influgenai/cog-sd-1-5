@@ -8,7 +8,7 @@ import requests
 MODEL_CACHE = "diffusers-cache"
 model_id = "redstonehero/epicrealism_pureevolutionv5"
 
-os.makedirs(MODEL_CACHE, exist_ok=True)
+os.makedirs(f"{MODEL_CACHE}/loras", exist_ok=True)
 
 loras = [
     { "name": "detail_tweaker", "url": "https://civitai.com/api/download/models/62833" },
@@ -47,8 +47,8 @@ loras = [
 ]
 
 def download_file(lora):
-    local_filename = MODEL_CACHE + "/" + lora["name"] + ".safetensors"
     url = lora["url"]
+    local_filename =  f"{MODEL_CACHE}/loras/{lora["name"]}.safetensors"
 
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
