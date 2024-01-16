@@ -20,7 +20,7 @@ def download_large_file(url, filename):
 # URL of the large file you want to download
 output_filename = 'diffusers-cache/lora.safetensors'
 # lora_path = "https://civitai.com/api/download/models/129193"
-lora_path = "https://civitai.com/api/download/models/286157?type=Model&format=SafeTensor"
+lora_path = "https://civitai.com/api/download/models/286157"
 
 # # Download the large file
 download_large_file(lora_path, output_filename)
