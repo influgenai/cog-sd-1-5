@@ -33,7 +33,8 @@ class Predictor(BasePredictor):
         )
         # self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
         # full_lora_path = os.path.join(os.getcwd(), "/diffusers-cache/lora.safetensors")
-        self.pipe.load_lora_weights("lora.safetensors")
+        # self.pipe.load_lora_weights(pretrained_model_name_or_path_or_dict={"local_files_only": True})
+        self.pipe.load_lora_weights("./diffusers-cache/lora.safetensors")
 
         self.pipe.to("cuda")
         
