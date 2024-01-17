@@ -8,5 +8,6 @@ build:
     - "transformers"
     - "accelerate"
     - "requests"
+    - "peft"
 
 predict: "predict.py:Predictor"
