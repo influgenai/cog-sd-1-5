@@ -12,10 +12,10 @@ os.makedirs(f"{MODEL_CACHE}/loras", exist_ok=True)
 
 loras = [
     # { "name": "detail_tweaker", "url": "https://civitai.com/api/download/models/62833" },
-    { "name": "beauty_face_lip_filler", "url": "https://civitai.com/api/download/models/32950?type=Mod el&format=SafeTensor&size=full&fp=fp16" },
+    # { "name": "beauty_face_lip_filler", "url": "https://civitai.com/api/download/models/32950?type=Model&format=SafeTensor&size=full&fp=fp16" },
     # { "name": "more_detailed_beautiful", "url": "https://civitai.com/api/download/models/167778" },
-    # { "name": "eyeliner", "url": "https://civitai.com/api/download/models/140229?type=Model&format=SafeTensor" },
-    # { "name": "bimbo_makeup", "url": "https://civitai.com/api/download/models/22398?type=Model&format=SafeTensor&size=full&fp=fp16" },
+    { "name": "eyeliner", "url": "https://civitai.com/api/download/models/140229?type=Model&format=SafeTensor" },
+    { "name": "bimbo_makeup", "url": "https://civitai.com/api/download/models/22398?type=Model&format=SafeTensor&size=full&fp=fp16" },
     # { "name": "yoga_pants", "url": "https://civitai.com/api/download/models/137700" },
     # { "name": "exercise_fitness_yoga_training_professional_movements", "url": "https://civitai.com/api/download/models/103540?type=Model&format=SafeTensor" },
     # { "name": "jjs_interior_space_gym", "url": "https://civitai.com/api/download/models/210580" },
@@ -46,7 +46,7 @@ loras = [
     # { "name": "masterpieces_of_natures_craftsmanship", "url": "https://civitai.com/api/download/models/135500" }
 ]
 
-def download_file(lora):
+def download_lora(lora):
     url = lora["url"]
     local_filename =  f"{MODEL_CACHE}/loras/{lora['name']}.safetensors"
 
@@ -70,11 +70,11 @@ def download_file(lora):
         print()  # Newline for clean output after download
     return local_filename
 
-def download_files():
+def download_loras():
     print(f"Download {len(loras)} loras")
     with ThreadPoolExecutor(max_workers=5) as executor:
-        executor.map(download_file, loras)
+        executor.map(download_lora, loras)
 
-download_files()
+download_loras()
 
 pipe = DiffusionPipeline.from_pretrained(model_id, cache_dir=MODEL_CACHE)
