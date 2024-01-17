@@ -41,7 +41,7 @@ loras = [
     { "name": "heaven_hell_fashion", "url": "https://civitai.com/api/download/models/209096?type=Model&format=SafeTensor" },
     { "name": "korean_style_fashion_trench_coat", "url": "https://civitai.com/api/download/models/266741" },
     { "name": "design_fashion", "url": "https://civitai.com/api/download/models/203603?type=Model&format=SafeTensor" },
-    { "name": "modern_victorian_fashion_dress ", "url": "https://civitai.com/api/download/models/189837?type=Model&format=SafeTensor" },
+    { "name": "modern_victorian_fashion_dress", "url": "https://civitai.com/api/download/models/189837?type=Model&format=SafeTensor" },
     { "name": "world_travel_guide_Season_1", "url": "https://civitai.com/api/download/models/109096?type=Model&format=SafeTensor" },
     { "name": "masterpieces_of_natures_craftsmanship", "url": "https://civitai.com/api/download/models/135500" }
 ]
