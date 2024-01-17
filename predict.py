@@ -31,8 +31,8 @@ class Predictor(BasePredictor):
         print(lora_names)
 
         for lora in lora_names:
-            print(f"adding lora to model {lora_names}")
-            self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}.safetensors", adapter_name=lora_names)
+            print(f"adding lora to model {lora}")
+            self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}.safetensors", adapter_name=lora)
 
         # self.pipe.set_adapters(lora_names, adapter_weights=[1.0] * len(lora_names))
         # self.pipe.fuse_lora(adapter_names=[lora_names])
