@@ -26,10 +26,15 @@ class Predictor(BasePredictor):
             requires_safety_checker = False
         )
 
-        for lora in os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras')):
-            print(f"adding lora to model {lora}")
-            self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}")
-            # self.pipe.fuse_lora(lora_scale = 0.5)
+        lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
+        lora_names = [item.split('.')[0] for item in lora_file_names]
+
+        for lora in lora_names:
+            print(f"adding lora to model {lora_names}")
+            self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}.safetensors", adapter_name=lora_names)
+
+        self.pipe.set_adapters(lora_names, adapter_weights=[1.0] * len(lora_names))
+        self.pipe.fuse_lora(adapter_names=[lora_names])
 
         self.pipe.to("cuda")
         
