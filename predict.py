@@ -16,14 +16,6 @@ MODEL_CACHE = "diffusers-cache"
 class Predictor(BasePredictor):
     def setup(self):
         print("Loading pipeline...")
-        print("WORKING DORECTORY", os.getcwd())
-
-        files_and_directories = os.listdir(os.getcwd())
-        # Print each file and directory
-        for item in files_and_directories:
-            print(item)
-
-        print("list diffusers cache", os.listdir(os.path.join(os.getcwd(), 'diffusers-cache')))
 
         self.pipe = DiffusionPipeline.from_pretrained(
             MODEL_ID,
@@ -31,10 +23,11 @@ class Predictor(BasePredictor):
             cache_dir=MODEL_CACHE,
             local_files_only=False,
         )
-        # self.pipe.unet.load_attn_procs("/diffusers-cache/lora.safetensors")
-        # full_lora_path = os.path.join(os.getcwd(), "/diffusers-cache/lora.safetensors")
-        # self.pipe.load_lora_weights(pretrained_model_name_or_path_or_dict={"local_files_only": True})
-        self.pipe.load_lora_weights("./diffusers-cache/lora.safetensors")
+
+        for lora in os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras')):
+            print(f"adding lora to model {lora}")
+            self.pipe.load_lora_weights("./diffusers-cache/loras/{lora}")
+            self.pipe.fuse_lora(lora_scale = 0.5)
 
         self.pipe.to("cuda")
         
