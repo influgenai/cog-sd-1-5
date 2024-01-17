@@ -24,6 +24,8 @@ class Predictor(BasePredictor):
             torch_dtype=torch.float16,
             cache_dir=MODEL_CACHE,
             local_files_only=False,
+            safety_checker = None,
+            requires_safety_checker = False
         )
 
         for lora in os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras')):
