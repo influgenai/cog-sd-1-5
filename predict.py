@@ -26,7 +26,7 @@ class Predictor(BasePredictor):
 
         for lora in os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras')):
             print(f"adding lora to model {lora}")
-            self.pipe.load_lora_weights("./diffusers-cache/loras/{lora}")
+            self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}")
             self.pipe.fuse_lora(lora_scale = 0.5)
 
         self.pipe.to("cuda")
