@@ -17,8 +17,6 @@ class Predictor(BasePredictor):
     def setup(self):
         print("Loading pipeline...")
 
-        self.pipe.safety_checker = lambda images, clip_input: (images, False)
-
         self.pipe = DiffusionPipeline.from_pretrained(
             MODEL_ID,
             torch_dtype=torch.float16,
