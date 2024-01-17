@@ -48,7 +48,7 @@ loras = [
 
 def download_file(lora):
     url = lora["url"]
-    local_filename =  f"{MODEL_CACHE}/loras/{lora["name"]}.safetensors"
+    local_filename =  f"{MODEL_CACHE}/loras/{lora['name']}.safetensors"
 
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
