@@ -35,7 +35,7 @@ loras = [
     { "name": "dancers_real_photos", "url": "https://civitai.com/api/download/models/145384?type=Model&format=SafeTensor" },
     { "name": "gymnast_outfit", "url": "https://civitai.com/api/download/models/68849" }, 
     { "name": "figure_skating_dresses_clothing", "url": "https://civitai.com/api/download/models/106332?type=Model&format=SafeTensor" }, 
-    { "name": "open_pose_gymnastics", "url": "https://civitai.com/api/download/models/281727" },
+    # { "name": "open_pose_gymnastics", "url": "https://civitai.com/api/download/models/281727" },
     { "name": "high_fashion_galliano_for_dior", "url": "https://civitai.com/api/download/models/168178?type=Model&format=SafeTensor" },
     { "name": "flowers_fashion", "url": "https://civitai.com/api/download/models/191498?type=Model&format=SafeTensor" },
     { "name": "heaven_hell_fashion", "url": "https://civitai.com/api/download/models/209096?type=Model&format=SafeTensor" },
