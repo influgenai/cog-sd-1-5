@@ -105,6 +105,7 @@ class Predictor(BasePredictor):
             )
 
         generator = torch.Generator("cuda").manual_seed(seed)
+
         output = self.pipe(
             prompt=[prompt] * num_outputs if prompt is not None else None,
             negative_prompt=[negative_prompt] * num_outputs
@@ -115,7 +116,8 @@ class Predictor(BasePredictor):
             guidance_scale=guidance_scale,
             generator=generator,
             num_inference_steps=num_inference_steps,
-            num_outputs=num_outputs
+            num_outputs=num_outputs,
+            scheduler=scheduler,
         )
 
         output_paths = []
