@@ -69,23 +69,23 @@ class Predictor(BasePredictor):
             default=1,
         ),
         num_inference_steps: int = Input(
-            description="Number of denoising steps", ge=1, le=500, default=50
+            description="Number of denoising steps", ge=1, le=500, default=25
         ),
         guidance_scale: float = Input(
             description="Scale for classifier-free guidance", ge=1, le=20, default=7.5
         ),
-        # scheduler: str = Input(
-        #     default="DPMSolverMultistep",
-        #     choices=[
-        #         "DDIM",
-        #         "K_EULER",
-        #         "DPMSolverMultistep",
-        #         "K_EULER_ANCESTRAL",
-        #         "PNDM",
-        #         "KLMS",
-        #     ],
-        #     description="Choose a scheduler.",
-        # ),
+        scheduler: str = Input(
+            default="DPMSolverMultistep",
+            choices=[
+                "DDIM",
+                "K_EULER",
+                "DPMSolverMultistep",
+                "K_EULER_ANCESTRAL",
+                "PNDM",
+                "KLMS",
+            ],
+            description="Choose a scheduler.",
+        ),
         seed: int = Input(
             description="Random seed. Leave blank to randomize the seed", default=None
         ),
@@ -114,9 +114,9 @@ class Predictor(BasePredictor):
             guidance_scale=guidance_scale,
             generator=generator,
             num_inference_steps=num_inference_steps,
+            num_outputs=num_outputs
         )
 
-        # output = self.pipe(prompt=prompt, strength=0.75, guidance_scale=7.5, num_inference_steps=25 )
         output_paths = []
         
         for i, sample in enumerate(output.images):
@@ -188,7 +188,7 @@ class Predictor(BasePredictor):
         # init_img = Image.open(input_photo_path)
         # init_img = init_img.resize((512, 512))
 
-        output = self.pipe(prompt=prompt, negative_prompt=negative_prompt, strength=0.75, guidance_scale=7.5, num_inference_steps=25, )
+        output = self.pipe(prompt=prompt, negative_prompt=negative_prompt, strength=0.75, guidance_scale=guidance_scale, num_inference_steps=num_inference_steps, scheduler=scheduler, width=width, height=height, num_outputs=num_outputs, seed=seed)
         output_paths = []
         
         for i, sample in enumerate(output.images):
