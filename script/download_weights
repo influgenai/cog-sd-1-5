@@ -6,7 +6,8 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 
 MODEL_CACHE = "diffusers-cache"
-model_id = "redstonehero/epicrealism_pureevolutionv5"
+# model_id = "redstonehero/epicrealism_pureevolutionv5"
+model_id = "cyberdelia/CyberRealistic"
 
 os.makedirs(f"{MODEL_CACHE}/loras", exist_ok=True)
 
@@ -80,6 +81,6 @@ def download_loras():
     with ThreadPoolExecutor(max_workers=5) as executor:
         executor.map(download_lora, loras)
 
-download_loras()
+# download_loras()
 
 pipe = DiffusionPipeline.from_pretrained(model_id, cache_dir=MODEL_CACHE)
