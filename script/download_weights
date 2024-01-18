@@ -26,7 +26,7 @@ loras = [
     { "name": "sexy_fitness_trainer", "url": "https://civitai.com/api/download/models/152527?type=Model&format=SafeTensor"},
     { "name": "sports_bra_gym_shorts_collection", "url": "https://civitai.com/api/download/models/291471?type=Model&format=SafeTensor" },
     { "name": "gym_girl_pose", "url": "https://civitai.com/api/download/models/257033?type=Model&format=SafeTensor" },
-    { "name": "gym_shorts", "url": "https://civitai.com/api/download/models/275369" },
+    # { "name": "gym_shorts", "url": "https://civitai.com/api/download/models/275369" },
     # { "name": "morphed_muscle", "url": "https://civitai.com/api/download/models/26411?type=Model&format=SafeTensor&size=full&fp=fp16" },
     # { "name": "dance_dresses_collection", "url": "https://civitai.com/api/download/models/98734" },
     # { "name": "oily_body_dancing_girl", "url": "https://civitai.com/api/download/models/178535?type=Model&format=SafeTensor" }, 
