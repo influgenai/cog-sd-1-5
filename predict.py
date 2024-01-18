@@ -188,7 +188,7 @@ class Predictor(BasePredictor):
         # init_img = Image.open(input_photo_path)
         # init_img = init_img.resize((512, 512))
 
-        output = self.pipe(prompt=prompt, strength=0.75, guidance_scale=7.5, num_inference_steps=25, )
+        output = self.pipe(prompt=prompt, negative_prompt=negative_prompt, strength=0.75, guidance_scale=7.5, num_inference_steps=25, )
         output_paths = []
         
         for i, sample in enumerate(output.images):
