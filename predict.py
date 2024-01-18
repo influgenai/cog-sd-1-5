@@ -46,11 +46,11 @@ class Predictor(BasePredictor):
         self,
         prompt: str = Input(
             description="Input prompt",
-            default="(Alessandra Ambrosio:0.5)",
+            default="photo realistic, ElizabethTurner, <lora:frieren_v1:1>, aafrie, long hair, white hair, twintails, pointy ears, earrings, thick eyebrows, white capelet, striped shirt, long sleeves, belt, white skirt, black pantyhose, deep forest,",
         ),
         negative_prompt: str = Input(
             description="Specify things to not see in the output",
-            default=None,
+            default="(CyberRealistic_Negative-neg:0.8), bicycle, nude, nsfw, large breasts, (deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime, mutated hands and fingers:1.4), (deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, disconnected limbs, mutation, mutated, ugly, amputation",
         ),
         width: int = Input(
             description="Width of output image. Maximum size is 1024x768 or 768x1024 because of memory limits",
