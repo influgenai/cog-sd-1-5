@@ -16,12 +16,12 @@ loras = [
     { "name": "more_detailed_beautiful", "url": "https://civitai.com/api/download/models/167778" },
     { "name": "eyeliner", "url": "https://civitai.com/api/download/models/140229?type=Model&format=SafeTensor" },
     { "name": "bimbo_makeup", "url": "https://civitai.com/api/download/models/22398?type=Model&format=SafeTensor&size=full&fp=fp16" },
-    # { "name": "yoga_pants", "url": "https://civitai.com/api/download/models/137700" },
-    # { "name": "exercise_fitness_yoga_training_professional_movements", "url": "https://civitai.com/api/download/models/103540?type=Model&format=SafeTensor" },
-    # { "name": "jjs_interior_space_gym", "url": "https://civitai.com/api/download/models/210580" },
-    # { "name": "yoga_pants_by_stable_yogi", "url": "https://civitai.com/api/download/models/204182?type=Model&format=SafeTensor" }, # no images on civitai for this one
-    # { "name": "yoga_poses", "url": "https://civitai.com/api/download/models/125073" },
-    # { "name": "yoga_studio", "url": "https://civitai.com/api/download/models/152384" },
+    { "name": "yoga_pants", "url": "https://civitai.com/api/download/models/137700" },
+    { "name": "exercise_fitness_yoga_training_professional_movements", "url": "https://civitai.com/api/download/models/103540?type=Model&format=SafeTensor" },
+    { "name": "jjs_interior_space_gym", "url": "https://civitai.com/api/download/models/210580" },
+    { "name": "yoga_pants_by_stable_yogi", "url": "https://civitai.com/api/download/models/204182?type=Model&format=SafeTensor" }, # no images on civitai for this one
+    { "name": "yoga_poses", "url": "https://civitai.com/api/download/models/125073" },
+    { "name": "yoga_studio", "url": "https://civitai.com/api/download/models/152384" },
     # { "name": "muscle_slider", "url": "https://civitai.com/api/download/models/121658?type=Model&format=SafeTensor" },
     # { "name": "sexy_fitness_trainer", "url": "https://civitai.com/api/download/models/152527?type=Model&format=SafeTensor"},
     # { "name": "sports_bra_gym_shorts_collection", "url": "https://civitai.com/api/download/models/291471?type=Model&format=SafeTensor" },
