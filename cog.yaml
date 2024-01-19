@@ -9,5 +9,6 @@ build:
     - "accelerate"
     - "requests"
     - "peft"
+    - "omegaconf"
 
 predict: "predict.py:Predictor"
