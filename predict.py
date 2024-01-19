@@ -21,7 +21,7 @@ class Predictor(BasePredictor):
         self.pipe = DiffusionPipeline.from_pretrained(
             "./diffusers-cache/epicrealism.safetensors",
             torch_dtype=torch.float16,
-            # cache_dir=MODEL_CACHE,
+            cache_dir=MODEL_CACHE,
             # local_files_only=True,
             safety_checker = None,
             requires_safety_checker = False,
