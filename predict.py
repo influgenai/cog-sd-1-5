@@ -16,6 +16,7 @@ MODEL_CACHE = "diffusers-cache"
 
 class Predictor(BasePredictor):
     def setup(self):
+        print(f"DIRS", os.listdir())
         print("Loading pipeline...")
 
         self.pipe = DiffusionPipeline.from_pretrained(
