@@ -2,7 +2,8 @@ from PIL import Image
 from cog import BasePredictor, Input, Path
 import torch
 from typing import List
-from diffusers import DiffusionPipeline
+# from diffusers import DiffusionPipeline
+from diffusers import StableDiffusionPipeline
 from torch.utils.data import Dataset
 import os
 import random
