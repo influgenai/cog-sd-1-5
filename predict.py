@@ -24,7 +24,8 @@ class Predictor(BasePredictor):
             # cache_dir=MODEL_CACHE,
             local_files_only=True,
             safety_checker = None,
-            requires_safety_checker = False
+            requires_safety_checker = False,
+            use_safetensors=True
         )
 
         # lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
