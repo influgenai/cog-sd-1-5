@@ -19,7 +19,7 @@ class Predictor(BasePredictor):
         print("Loading pipeline...")
 
         self.pipe = DiffusionPipeline.from_pretrained(
-            "./diffusers-cache/epicrealism.safetensors",
+            "/diffusers-cache/epicrealism.safetensors",
             torch_dtype=torch.float16,
             cache_dir=MODEL_CACHE,
             # local_files_only=True,
