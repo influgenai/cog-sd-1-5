@@ -19,14 +19,17 @@ class Predictor(BasePredictor):
         print(f"DIRS", os.listdir("diffusers-cache"))
         print("Loading pipeline...")
 
-        self.pipe = DiffusionPipeline.from_pretrained(
-            "/diffusers-cache/epicrealism.safetensors",
-            torch_dtype=torch.float16,
-            cache_dir=MODEL_CACHE,
-            # local_files_only=True,
-            safety_checker = None,
-            requires_safety_checker = False,
-            use_safetensors=True
+        # self.pipe = DiffusionPipeline.from_pretrained(
+        #     "/diffusers-cache/epicrealism.safetensors",
+        #     torch_dtype=torch.float16,
+        #     cache_dir=MODEL_CACHE,
+        #     # local_files_only=True,
+        #     safety_checker = None,
+        #     requires_safety_checker = False,
+        #     use_safetensors=True
+        # )
+        self.pipe = DiffusionPipeline.from_single_file(
+            "https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
         )
 
         # lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
