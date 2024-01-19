@@ -30,7 +30,8 @@ class Predictor(BasePredictor):
         #     use_safetensors=True
         # )
         self.pipe = StableDiffusionPipeline.from_single_file(
-            "https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+            # "https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+            "https://huggingface.co/WarriorMama777/OrangeMixs/blob/main/Models/AbyssOrangeMix/AbyssOrangeMix.safetensors"
         )
 
         # lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
