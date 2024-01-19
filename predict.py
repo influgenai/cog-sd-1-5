@@ -2,8 +2,8 @@ from PIL import Image
 from cog import BasePredictor, Input, Path
 import torch
 from typing import List
-# from diffusers import DiffusionPipeline
-from diffusers import StableDiffusionPipeline
+from diffusers import DiffusionPipeline
+# from diffusers import StableDiffusionPipeline
 from torch.utils.data import Dataset
 import os
 import random
@@ -20,21 +20,19 @@ class Predictor(BasePredictor):
         print(f"DIRS", os.listdir("diffusers-cache"))
         print("Loading pipeline...")
 
-        # self.pipe = DiffusionPipeline.from_pretrained(
-        #     "/diffusers-cache/epicrealism.safetensors",
-        #     torch_dtype=torch.float16,
+        self.pipe = DiffusionPipeline.from_pretrained(
+            "emilianJR/epiCRealism",
+            torch_dtype=torch.float16,
+            cache_dir=MODEL_CACHE,
+            safety_checker = None,
+            requires_safety_checker = False,
+        )
+        # self.pipe = StableDiffusionPipeline.from_single_file(
+        #     "diffusers-cache/epicrealism.safetensors",
         #     cache_dir=MODEL_CACHE,
-        #     # local_files_only=True,
-        #     safety_checker = None,
-        #     requires_safety_checker = False,
+        #     local_files_only=True,
         #     use_safetensors=True
         # )
-        self.pipe = StableDiffusionPipeline.from_single_file(
-            "diffusers-cache/epicrealism.safetensors",
-            cache_dir=MODEL_CACHE,
-            local_files_only=True,
-            use_safetensors=True
-        )
 
         # lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
         # lora_names = [item.split('.')[0] for item in lora_file_names]

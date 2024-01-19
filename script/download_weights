@@ -6,6 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 
 MODEL_CACHE = "diffusers-cache"
+model_id="emilianJR/epiCRealism"
 # model_id = "redstonehero/epicrealism_pureevolutionv5"
 # model_id = "cyberdelia/CyberRealistic"
 
@@ -102,6 +103,6 @@ def download_model():
 
 # download_loras()
         
-download_model()
-
-# pipe = DiffusionPipeline.from_pretrained("epicrealism.safetensors", cache_dir=MODEL_CACHE, )
+# download_model()
+        
+pipe = DiffusionPipeline.from_pretrained(model_id, cache_dir=MODEL_CACHE, )
