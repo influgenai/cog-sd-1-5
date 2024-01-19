@@ -29,7 +29,7 @@ class Predictor(BasePredictor):
         #     requires_safety_checker = False,
         #     use_safetensors=True
         # )
-        self.pipe = DiffusionPipeline.from_single_file(
+        self.pipe = StableDiffusionPipeline.from_single_file(
             "https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
         )
 
