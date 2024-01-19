@@ -10,7 +10,8 @@ import io
 import base64
 
 
-MODEL_ID = "runwayml/stable-diffusion-v1-5"
+# MODEL_ID = "runwayml/stable-diffusion-v1-5"
+MODEL_ID = "epicrealism.safetensors"
 MODEL_CACHE = "diffusers-cache"
 
 class Predictor(BasePredictor):
@@ -21,7 +22,7 @@ class Predictor(BasePredictor):
             MODEL_ID,
             torch_dtype=torch.float16,
             cache_dir=MODEL_CACHE,
-            local_files_only=False,
+            local_files_only=True,
             safety_checker = None,
             requires_safety_checker = False
         )

@@ -7,7 +7,7 @@ import requests
 
 MODEL_CACHE = "diffusers-cache"
 # model_id = "redstonehero/epicrealism_pureevolutionv5"
-model_id = "cyberdelia/CyberRealistic"
+# model_id = "cyberdelia/CyberRealistic"
 
 os.makedirs(f"{MODEL_CACHE}/loras", exist_ok=True)
 
@@ -81,6 +81,27 @@ def download_loras():
     with ThreadPoolExecutor(max_workers=5) as executor:
         executor.map(download_lora, loras)
 
-# download_loras()
 
-pipe = DiffusionPipeline.from_pretrained(model_id, cache_dir=MODEL_CACHE)
+def download_model():
+    with requests.get("https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16", stream=True) as r:
+        r.raise_for_status()
+        # Get the total file size from headers
+        total_length = r.headers.get('content-length')
+        if total_length is not None:  # [1]
+            total_length = int(total_length)
+        
+        downloaded = 0
+        with open('diffusers-cache/epicrealism.safetensors', 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                if chunk:  # filter out keep-alive new chunks
+                    f.write(chunk)
+                    downloaded += len(chunk)
+                    done_percentage = int(50 * downloaded / total_length) if total_length else '?'
+                    print(f'\rDownloading: [{"#" * done_percentage}{"." * (50-done_percentage)}] {downloaded}/{total_length} bytes', end='', flush=True)
+        print()  # Newline for clean output after download
+
+# download_loras()
+        
+download_model()
+
+# pipe = DiffusionPipeline.from_pretrained("epicrealism.safetensors", cache_dir=MODEL_CACHE, )
