@@ -30,7 +30,7 @@ class Predictor(BasePredictor):
         #     use_safetensors=True
         # )
         self.pipe = StableDiffusionPipeline.from_single_file(
-            "/epicrealism.safetensors",
+            "./epicrealism.safetensors",
             cache_dir=MODEL_CACHE,
             local_files_only=True,
             use_safetensors=True
