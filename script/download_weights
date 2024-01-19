@@ -103,6 +103,6 @@ def download_model():
 
 # download_loras()
         
-# download_model()
+download_model()
         
-pipe = DiffusionPipeline.from_pretrained(model_id, cache_dir=MODEL_CACHE, )
+# pipe = DiffusionPipeline.from_pretrained("https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16")

@@ -12,7 +12,9 @@ import base64
 
 
 # MODEL_ID = "runwayml/stable-diffusion-v1-5"
-MODEL_ID = "epicrealism.safetensors"
+# MODEL_ID = "epicrealism.safetensors"
+MODEL_ID = "diffusers-cache/epicrealism.safetensors"
+# MODEL_ID="https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
 MODEL_CACHE = "diffusers-cache"
 
 class Predictor(BasePredictor):
@@ -21,9 +23,9 @@ class Predictor(BasePredictor):
         print("Loading pipeline...")
 
         self.pipe = DiffusionPipeline.from_pretrained(
-            "emilianJR/epiCRealism",
+            MODEL_ID,
             torch_dtype=torch.float16,
-            cache_dir=MODEL_CACHE,
+            # cache_dir=MODEL_CACHE,
             safety_checker = None,
             requires_safety_checker = False,
         )
