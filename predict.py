@@ -83,8 +83,9 @@ class Predictor(BasePredictor):
             description="Scale for classifier-free guidance", ge=1, le=20, default=7.5
         ),
         scheduler: str = Input(
-            default="DPM++ 2M Karras",
+            default="DPM++ SDE Karras",
             choices=[
+                "DPM++ SDE Karras",
                 "DPM++ 2M Karras",
                 "DDIM",
                 "K_EULER",
