@@ -10,6 +10,8 @@ MODEL_CACHE = "diffusers-cache"
 model_id="emilianJR/epiCRealism"
 # model_id = "redstonehero/epicrealism_pureevolutionv5"
 # model_id = "cyberdelia/CyberRealistic"
+epic_realism_natural_sin_rc1_vae="https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+epic_realism_natural_sin="https://civitai.com/api/download/models/160989"
 
 os.makedirs(f"{MODEL_CACHE}/loras", exist_ok=True)
 
@@ -85,7 +87,7 @@ def download_loras():
 
 
 def download_model():
-    with requests.get("https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16", stream=True) as r:
+    with requests.get(epic_realism_natural_sin, stream=True) as r:
         r.raise_for_status()
         # Get the total file size from headers
         total_length = r.headers.get('content-length')
