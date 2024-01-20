@@ -22,19 +22,18 @@ class Predictor(BasePredictor):
         print(f"DIRS", os.listdir("diffusers-cache"))
         print("Loading pipeline...")
 
-        self.pipe = DiffusionPipeline.from_pretrained(
-            MODEL_ID,
-            torch_dtype=torch.float16,
-            # cache_dir=MODEL_CACHE,
-            safety_checker = None,
-            requires_safety_checker = False,
-        )
-        # self.pipe = StableDiffusionPipeline.from_single_file(
-        #     "diffusers-cache/epicrealism.safetensors",
-        #     cache_dir=MODEL_CACHE,
-        #     local_files_only=True,
-        #     use_safetensors=True
+        # self.pipe = DiffusionPipeline.from_pretrained(
+        #     MODEL_ID,
+        #     torch_dtype=torch.float16,
+        #     # cache_dir=MODEL_CACHE,
+        #     safety_checker = None,
+        #     requires_safety_checker = False,
         # )
+
+        self.pipe = DiffusionPipeline.from_single_file(
+            "diffusers-cache/epicrealism.safetensors",
+            use_safetensors=True
+        )
 
         # lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
         # lora_names = [item.split('.')[0] for item in lora_file_names]
