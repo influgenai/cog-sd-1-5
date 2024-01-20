@@ -89,7 +89,7 @@ def download_loras():
 
 
 def download_model():
-    with requests.get(cyber_realistic, stream=True) as r:
+    with requests.get(epic_realism_natural_sin_rc1_vae, stream=True) as r:
         r.raise_for_status()
         # Get the total file size from headers
         total_length = r.headers.get('content-length')
