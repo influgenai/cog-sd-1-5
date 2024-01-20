@@ -2,8 +2,8 @@ from PIL import Image
 from cog import BasePredictor, Input, Path
 import torch
 from typing import List
-from diffusers import DiffusionPipeline
-# from diffusers import StableDiffusionPipeline
+# from diffusers import DiffusionPipeline
+from diffusers import StableDiffusionPipeline
 from torch.utils.data import Dataset
 import os
 import random
@@ -30,7 +30,7 @@ class Predictor(BasePredictor):
         #     requires_safety_checker = False,
         # )
 
-        self.pipe = DiffusionPipeline.from_single_file(
+        self.pipe = StableDiffusionPipeline.from_single_file(
             "diffusers-cache/epicrealism.safetensors",
             use_safetensors=True
         )
