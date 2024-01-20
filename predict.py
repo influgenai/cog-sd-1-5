@@ -33,6 +33,7 @@ class Predictor(BasePredictor):
         self.pipe = StableDiffusionPipeline.from_single_file(
             "diffusers-cache/epicrealism.safetensors",
             use_safetensors=True
+            load_safety_checker=False
         )
 
         # lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
