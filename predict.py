@@ -3,7 +3,16 @@ from cog import BasePredictor, Input, Path
 import torch
 from typing import List
 # from diffusers import DiffusionPipeline
-from diffusers import StableDiffusionPipeline
+# from diffusers import StableDiffusionPipeline
+from diffusers import (
+    StableDiffusionPipeline,
+    PNDMScheduler,
+    LMSDiscreteScheduler,
+    DDIMScheduler,
+    EulerDiscreteScheduler,
+    EulerAncestralDiscreteScheduler,
+    DPMSolverMultistepScheduler,
+)
 from torch.utils.data import Dataset
 import os
 import random
@@ -84,11 +93,14 @@ class Predictor(BasePredictor):
         guidance_scale: float = Input(
             description="Scale for classifier-free guidance", ge=1, le=20, default=7.5
         ),
+        # scheduler: str = Input(
+        #     description="scheduler",
+        #     choices=SCHEDULERS.keys(),
+        #     default="K_EULER",
+        # ),
         scheduler: str = Input(
-            default="DPM++ SDE Karras",
+            default="DPMSolverMultistep",
             choices=[
-                "DPM++ SDE Karras",
-                "DPM++ 2M Karras",
                 "DDIM",
                 "K_EULER",
                 "DPMSolverMultistep",
@@ -115,7 +127,10 @@ class Predictor(BasePredictor):
                 "Maximum size is 1024x768 or 768x1024 pixels, because of memory limits. Please select a lower width or height."
             )
 
+        self.pipe.scheduler = make_scheduler(scheduler, self.pipe.scheduler.config)
+
         generator = torch.Generator("cuda").manual_seed(seed)
+
         output = self.pipe(
             prompt=[prompt] * num_outputs if prompt is not None else None,
             negative_prompt=[negative_prompt] * num_outputs
@@ -127,7 +142,7 @@ class Predictor(BasePredictor):
             generator=generator,
             num_inference_steps=num_inference_steps,
             num_outputs=num_outputs,
-            scheduler=scheduler
+            # scheduler=scheduler
         )
 
         output_paths = []
@@ -140,3 +155,13 @@ class Predictor(BasePredictor):
         print("saved")
         
         return output_paths
+    
+def make_scheduler(name, config):
+    return {
+        "PNDM": PNDMScheduler.from_config(config),
+        "KLMS": LMSDiscreteScheduler.from_config(config),
+        "DDIM": DDIMScheduler.from_config(config),
+        "K_EULER": EulerDiscreteScheduler.from_config(config),
+        "K_EULER_ANCESTRAL": EulerAncestralDiscreteScheduler.from_config(config),
+        "DPMSolverMultistep": DPMSolverMultistepScheduler.from_config(config),
+    }[name]
