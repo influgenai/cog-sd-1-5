@@ -49,7 +49,7 @@ class Predictor(BasePredictor):
 
         self.pipe.to("cuda")
         
-        self.pipe.enable_attention_slicing()
+        # self.pipe.enable_attention_slicing()
 
     @torch.inference_mode()
     def predict(
