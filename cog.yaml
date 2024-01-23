@@ -10,5 +10,6 @@ build:
     - "requests"
     - "peft"
     - "omegaconf"
+    - "scipy"
 
 predict: "predict.py:Predictor"
