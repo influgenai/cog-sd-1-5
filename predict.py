@@ -22,22 +22,13 @@ import base64
 
 # MODEL_ID = "runwayml/stable-diffusion-v1-5"
 # MODEL_ID = "epicrealism.safetensors"
-MODEL_ID = "diffusers-cache/epicrealism.safetensors"
+# MODEL_ID = "diffusers-cache/epicrealism.safetensors"
 # MODEL_ID="https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
 MODEL_CACHE = "diffusers-cache"
 
 class Predictor(BasePredictor):
     def setup(self):
-        print(f"DIRS", os.listdir("diffusers-cache"))
         print("Loading pipeline...")
-
-        # self.pipe = DiffusionPipeline.from_pretrained(
-        #     MODEL_ID,
-        #     torch_dtype=torch.float16,
-        #     # cache_dir=MODEL_CACHE,
-        #     safety_checker = None,
-        #     requires_safety_checker = False,
-        # )
 
         self.pipe = StableDiffusionPipeline.from_single_file(
             "diffusers-cache/epicrealism.safetensors",
@@ -45,20 +36,18 @@ class Predictor(BasePredictor):
             load_safety_checker=False
         )
 
-        # lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
-        # lora_names = [item.split('.')[0] for item in lora_file_names]
-        # lora_weights = [1.0] * len(lora_names)
+        lora_file_names = os.listdir(os.path.join(os.getcwd(), './diffusers-cache/loras'))
+        lora_names = [item.split('.')[0] for item in lora_file_names]
+        lora_weights = [6] * len(lora_names)
 
-        # for lora in lora_names:
-        #     print(f"adding lora to model {lora}")
-        #     self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}.safetensors", adapter_name=lora)
+        for lora in lora_names:
+            print(f"adding lora to model {lora}")
+            self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}.safetensors", adapter_name=lora)
 
-        # self.pipe.set_adapters(lora_names, adapter_weights=lora_weights)
+        self.pipe.set_adapters(lora_names, adapter_weights=lora_weights)
         # self.pipe.fuse_lora(adapter_names=lora_names)
 
         self.pipe.to("cuda")
-        
-        # self.pipe.enable_attention_slicing()
 
     @torch.inference_mode()
     def predict(
@@ -93,11 +82,6 @@ class Predictor(BasePredictor):
         guidance_scale: float = Input(
             description="Scale for classifier-free guidance", ge=1, le=20, default=7.5
         ),
-        # scheduler: str = Input(
-        #     description="scheduler",
-        #     choices=SCHEDULERS.keys(),
-        #     default="K_EULER",
-        # ),
         scheduler: str = Input(
             default="DPMSolverMultistep",
             choices=[

@@ -7,25 +7,25 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 
 MODEL_CACHE = "diffusers-cache"
-model_id="emilianJR/epiCRealism"
+# model_id="emilianJR/epiCRealism"
 # model_id = "redstonehero/epicrealism_pureevolutionv5"
 # model_id = "cyberdelia/CyberRealistic"
 epic_realism_natural_sin_rc1_vae="https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
-epic_realism_natural_sin="https://civitai.com/api/download/models/160989"
-epic_realism_pure_evolution_v5="https://civitai.com/api/download/models/134065?type=Model&format=SafeTensor&size=pruned&fp=fp16"
-cyber_realistic="https://civitai.com/api/download/models/256915"
+# epic_realism_natural_sin="https://civitai.com/api/download/models/160989"
+# epic_realism_pure_evolution_v5="https://civitai.com/api/download/models/134065?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+# cyber_realistic="https://civitai.com/api/download/models/256915"
 
 os.makedirs(f"{MODEL_CACHE}/loras", exist_ok=True)
 
 loras = [
-    { "name": "detail_tweaker", "url": "https://civitai.com/api/download/models/62833" },
-    { "name": "beauty_face_lip_filler", "url": "https://civitai.com/api/download/models/32950?type=Model&format=SafeTensor&size=full&fp=fp16" },
-    { "name": "more_detailed_beautiful", "url": "https://civitai.com/api/download/models/167778" },
-    { "name": "eyeliner", "url": "https://civitai.com/api/download/models/140229?type=Model&format=SafeTensor" },
-    { "name": "bimbo_makeup", "url": "https://civitai.com/api/download/models/22398?type=Model&format=SafeTensor&size=full&fp=fp16" },
-    { "name": "yoga_pants", "url": "https://civitai.com/api/download/models/137700" },
-    { "name": "exercise_fitness_yoga_training_professional_movements", "url": "https://civitai.com/api/download/models/103540?type=Model&format=SafeTensor" },
-    { "name": "jjs_interior_space_gym", "url": "https://civitai.com/api/download/models/210580" },
+    # { "name": "detail_tweaker", "url": "https://civitai.com/api/download/models/62833" },
+    # { "name": "beauty_face_lip_filler", "url": "https://civitai.com/api/download/models/32950?type=Model&format=SafeTensor&size=full&fp=fp16" },
+    # { "name": "more_detailed_beautiful", "url": "https://civitai.com/api/download/models/167778" },
+    # { "name": "eyeliner", "url": "https://civitai.com/api/download/models/140229?type=Model&format=SafeTensor" },
+    # { "name": "bimbo_makeup", "url": "https://civitai.com/api/download/models/22398?type=Model&format=SafeTensor&size=full&fp=fp16" },
+    # { "name": "yoga_pants", "url": "https://civitai.com/api/download/models/137700" },
+    # { "name": "exercise_fitness_yoga_training_professional_movements", "url": "https://civitai.com/api/download/models/103540?type=Model&format=SafeTensor" },
+    # { "name": "jjs_interior_space_gym", "url": "https://civitai.com/api/download/models/210580" },
     
     # { "name": "yoga_pants_by_stable_yogi", "url": "https://civitai.com/api/download/models/204182?type=Model&format=SafeTensor" }, # no images on civitai for this one
     # { "name": "yoga_poses", "url": "https://civitai.com/api/download/models/125073" },
@@ -49,7 +49,7 @@ loras = [
 
     # { "name": "open_pose_gymnastics", "url": "https://civitai.com/api/download/models/281727" },
     # { "name": "high_fashion_galliano_for_dior", "url": "https://civitai.com/api/download/models/168178?type=Model&format=SafeTensor" },
-    # { "name": "flowers_fashion", "url": "https://civitai.com/api/download/models/191498?type=Model&format=SafeTensor" },
+    { "name": "flowers_fashion", "url": "https://civitai.com/api/download/models/191498?type=Model&format=SafeTensor" },
     # { "name": "heaven_hell_fashion", "url": "https://civitai.com/api/download/models/209096?type=Model&format=SafeTensor" },
     # { "name": "korean_style_fashion_trench_coat", "url": "https://civitai.com/api/download/models/266741" },
     # { "name": "design_fashion", "url": "https://civitai.com/api/download/models/203603?type=Model&format=SafeTensor" },
@@ -106,8 +106,7 @@ def download_model():
                     print(f'\rDownloading: [{"#" * done_percentage}{"." * (50-done_percentage)}] {downloaded}/{total_length} bytes', end='', flush=True)
         print()  # Newline for clean output after download
 
-# download_loras()
-        
+download_loras() 
 download_model()
         
 # pipe = DiffusionPipeline.from_pretrained("https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16")
