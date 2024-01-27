@@ -23,7 +23,7 @@ loras = [
     # { "name": "more_detailed_beautiful", "url": "https://civitai.com/api/download/models/167778" },
     # { "name": "eyeliner", "url": "https://civitai.com/api/download/models/140229?type=Model&format=SafeTensor" },
     # { "name": "bimbo_makeup", "url": "https://civitai.com/api/download/models/22398?type=Model&format=SafeTensor&size=full&fp=fp16" },
-    # { "name": "yoga_pants", "url": "https://civitai.com/api/download/models/137700" },
+    { "name": "yoga_pants", "url": "https://civitai.com/api/download/models/137700" },
     # { "name": "exercise_fitness_yoga_training_professional_movements", "url": "https://civitai.com/api/download/models/103540?type=Model&format=SafeTensor" },
     # { "name": "jjs_interior_space_gym", "url": "https://civitai.com/api/download/models/210580" },
     
