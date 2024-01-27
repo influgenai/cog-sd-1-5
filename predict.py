@@ -28,7 +28,7 @@ MODEL_CACHE = "diffusers-cache"
 
 class Predictor(BasePredictor):
     def setup(self):
-    print(f"RUNNING SETUP")
+        print(f"RUNNING SETUP")
 
         self.pipe = StableDiffusionPipeline.from_single_file(
             "diffusers-cache/epicrealism.safetensors",
