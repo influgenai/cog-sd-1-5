@@ -107,7 +107,7 @@ def download_model():
                     print(f'\rDownloading: [{"#" * done_percentage}{"." * (50-done_percentage)}] {downloaded}/{total_length} bytes', end='', flush=True)
         print()  # Newline for clean output after download
 
-download_loras() 
+# download_loras() 
 download_model()
         
 # pipe = DiffusionPipeline.from_pretrained("https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16")
