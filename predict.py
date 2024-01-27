@@ -40,11 +40,14 @@ class Predictor(BasePredictor):
         lora_names = [item.split('.')[0] for item in lora_file_names]
         lora_weights = [6] * len(lora_names)
 
-        for lora in lora_names:
-            print(f"adding lora to model {lora}")
-            self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}.safetensors", adapter_name=lora)
+        # for lora in lora_names:
+        #     print(f"adding lora to model {lora}")
+        #     self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}.safetensors", adapter_name=lora)
 
-        self.pipe.set_adapters(lora_names, adapter_weights=lora_weights)
+        # This works   
+        # self.pipe.set_adapters(lora_names, adapter_weights=lora_weights)
+        
+        
         # self.pipe.fuse_lora(adapter_names=lora_names)
 
         self.pipe.to("cuda")
