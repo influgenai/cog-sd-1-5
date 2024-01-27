@@ -28,7 +28,7 @@ MODEL_CACHE = "diffusers-cache"
 
 class Predictor(BasePredictor):
     def setup(self):
-        print("Loading pipeline...")
+    print(f"RUNNING SETUP")
 
         self.pipe = StableDiffusionPipeline.from_single_file(
             "diffusers-cache/epicrealism.safetensors",
@@ -102,6 +102,7 @@ class Predictor(BasePredictor):
         # input_photo_path = input_photo
         # init_img = Image.open(input_photo_path)
         # init_img = init_img.resize((512, 512))
+        print(f"RUNNING PREDICT")
         """Run a single prediction on the model"""
         if seed is None:
             seed = int.from_bytes(os.urandom(2), "big")
