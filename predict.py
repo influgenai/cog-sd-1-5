@@ -45,7 +45,7 @@ class Predictor(BasePredictor):
             self.pipe.load_lora_weights(f"./diffusers-cache/loras/{lora}.safetensors", adapter_name=lora)
 
         self.pipe.set_adapters(lora_names, adapter_weights=lora_weights)
-        # self.pipe.fuse_lora(adapter_names=lora_names)
+        self.pipe.fuse_lora(adapter_names=lora_names)
         # self.pipe.fuse_lora()
 
         self.pipe.to("cuda")
