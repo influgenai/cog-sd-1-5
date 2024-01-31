@@ -2,8 +2,7 @@ from PIL import Image
 from cog import BasePredictor, Input, Path
 import torch
 from typing import List
-# from diffusers import DiffusionPipeline
-# from diffusers import StableDiffusionPipeline
+
 from diffusers import (
     StableDiffusionPipeline,
     PNDMScheduler,
@@ -15,15 +14,7 @@ from diffusers import (
 )
 from torch.utils.data import Dataset
 import os
-import random
-import io
-import base64
 
-
-# MODEL_ID = "runwayml/stable-diffusion-v1-5"
-# MODEL_ID = "epicrealism.safetensors"
-# MODEL_ID = "diffusers-cache/epicrealism.safetensors"
-# MODEL_ID="https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
 MODEL_CACHE = "diffusers-cache"
 
 class Predictor(BasePredictor):
@@ -56,21 +47,21 @@ class Predictor(BasePredictor):
         self,
         prompt: str = Input(
             description="Input prompt",
-            default="photo realistic, ElizabethTurner, <lora:frieren_v1:1>, aafrie, long hair, white hair, twintails, pointy ears, earrings, thick eyebrows, white capelet, striped shirt, long sleeves, belt, white skirt, black pantyhose, deep forest,",
+            default="",
         ),
         negative_prompt: str = Input(
             description="Specify things to not see in the output",
-            default="(CyberRealistic_Negative-neg:0.8), bicycle, nude, nsfw, large breasts, (deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime, mutated hands and fingers:1.4), (deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, disconnected limbs, mutation, mutated, ugly, amputation",
+            default="",
         ),
         width: int = Input(
             description="Width of output image. Maximum size is 1024x768 or 768x1024 because of memory limits",
-            choices=[128, 256, 384, 448, 512, 576, 640, 704, 768, 832, 896, 960, 1024],
-            default=768,
+            choices=[704, 768],
+            default=704,
         ),
         height: int = Input(
             description="Height of output image. Maximum size is 1024x768 or 768x1024 because of memory limits",
-            choices=[128, 256, 384, 448, 512, 576, 640, 704, 768, 832, 896, 960, 1024],
-            default=768,
+            choices=[896, 960],
+            default=896,
         ),
         num_outputs: int = Input(
             description="Number of images to output.",
@@ -79,10 +70,10 @@ class Predictor(BasePredictor):
             default=1,
         ),
         num_inference_steps: int = Input(
-            description="Number of denoising steps", ge=1, le=500, default=25
+            description="Number of denoising steps", ge=1, le=50, default=25
         ),
         guidance_scale: float = Input(
-            description="Scale for classifier-free guidance", ge=1, le=20, default=7.5
+            description="Scale for classifier-free guidance", ge=1, le=20, default=2.5
         ),
         scheduler: str = Input(
             default="DPMSolverMultistep",
