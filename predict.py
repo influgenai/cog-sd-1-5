@@ -125,7 +125,17 @@ class Predictor(BasePredictor):
         
         for i, sample in enumerate(output.images):
             output_path = f"/tmp/out-{i}.png"
-            sample.save(output_path)
+
+            # next 3 lines strip exif
+            data = list(sample.getdata())
+            image_without_exif = Image.new(sample.mode, sample.size)
+            image_without_exif.putdata(data)
+            image_without_exif.save(output_path)
+
+            # as a good practice, close the file handler after saving the image.
+            image_without_exif.close()
+
+            #sample.save(output_path)
             output_paths.append(Path(output_path))
         
         print("saved")
