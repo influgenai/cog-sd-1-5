@@ -67,7 +67,7 @@ class Predictor(BasePredictor):
             description="Number of images to output.",
             ge=1,
             le=4,
-            default=2,
+            default=1,
         ),
         num_inference_steps: int = Input(
             description="Number of denoising steps", ge=1, le=50, default=25
