@@ -67,7 +67,7 @@ class Predictor(BasePredictor):
             description="Number of images to output.",
             ge=1,
             le=4,
-            default=1,
+            default=2,
         ),
         num_inference_steps: int = Input(
             description="Number of denoising steps", ge=1, le=50, default=25
@@ -140,7 +140,7 @@ class Predictor(BasePredictor):
             #sample.save(output_path)
             output_paths.append(Path(output_path))
         
-        print("saved")
+        print("saved", output_paths)
         
         return output_paths
     
